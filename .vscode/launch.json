@@ -12,8 +12,43 @@
             "runtimeExecutable": "npm",
             "runtimeArgs": ["run-script", "debug"],
             "port": 9229,
-            "preLaunchTask": "tsc: build - src\\tsconfig.json",
+            "windows": {
+                "preLaunchTask": "tsc: build - src\\tsconfig.json"
+            },
+            "osx": {
+                "preLaunchTask": "tsc: build - src/tsconfig.json"
+            },
             "sourceMaps": true
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Mocha All",
+            "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
+            "args": [
+                "--require", "ts-node/register",
+                "--timeout",
+                "999999",
+                "--colors",
+                "${workspaceFolder}/src/**/*.spec.ts"
+            ],
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Mocha Current File",
+            "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
+            "args": [
+                "--require", "ts-node/register",
+                "--timeout",
+                "999999",
+                "--colors",
+                "${file}"
+            ],
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen"
         }
     ]
 }
